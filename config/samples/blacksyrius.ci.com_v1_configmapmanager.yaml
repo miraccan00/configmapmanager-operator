@@ -1,0 +1,21 @@
+apiVersion: blacksyrius.ci.com/v1
+kind: ConfigMapManager
+metadata:
+  # labels:
+  #   app.kubernetes.io/name: configmapmanager-v2
+  #   app.kubernetes.io/managed-by: kustomize
+  name: configmapmanager-sample
+spec:
+  configMaps:
+    - name: example-config
+      updates:
+        - key: LOG_LEVEL
+          newValue: "info"
+        - key: DB_HOST
+          newValue: "mysql.example-new-2.com"
+    - name: another-config
+      updates:
+        - key: API_URL
+          newValue: "https://api.example.com"
+        - key: RETRY_COUNT
+          newValue: "5"

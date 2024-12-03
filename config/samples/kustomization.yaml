@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- blacksyrius.ci.com_v1_configmapmanager.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

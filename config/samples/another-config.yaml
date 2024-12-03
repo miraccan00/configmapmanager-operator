@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: another-config
+data:
+  # Key-value pairs for environment variables or configuration files
+  API_URL: "https://api.example-new-3.com"
+  RETRY_COUNT: "4"

@@ -1,0 +1,84 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.16.1
+  name: configmapmanagers.blacksyrius.ci.com
+spec:
+  group: blacksyrius.ci.com
+  names:
+    kind: ConfigMapManager
+    listKind: ConfigMapManagerList
+    plural: configmapmanagers
+    singular: configmapmanager
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: ConfigMapManager is the Schema for the configmapmanagers API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: ConfigMapManagerSpec defines the desired state of ConfigMapManager
+            properties:
+              configMaps:
+                items:
+                  description: ConfigMapSpec defines the desired state of a ConfigMap
+                  properties:
+                    name:
+                      type: string
+                    updates:
+                      items:
+                        description: ConfigUpdate defines the desired state of a ConfigMap
+                          update
+                        properties:
+                          key:
+                            type: string
+                          newValue:
+                            type: string
+                        required:
+                        - key
+                        - newValue
+                        type: object
+                      type: array
+                  required:
+                  - name
+                  - updates
+                  type: object
+                type: array
+            required:
+            - configMaps
+            type: object
+          status:
+            description: ConfigMapManagerStatus defines the observed state of ConfigMapManager
+            properties:
+              updatedConfigMaps:
+                description: Örnek olarak, güncellenen ConfigMap'lerin isimlerini
+                  tutabilirsiniz.
+                items:
+                  type: string
+                type: array
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
